@@ -1,107 +1,215 @@
-MLOps Projects Portfolio 🚀
+# MLOps Projects Portfolio 🚀
 
-Welcome to my MLOps portfolio! This repository documents my journey in applying MLOps best practices—experiment tracking, model pipelines, and reproducibility—to real-world machine learning problems.
+Welcome to my **MLOps portfolio**, a collection of projects showcasing best practices in machine learning operations, including experiment tracking, reproducible pipelines, and systematic model evaluation.
 
-🌤️ Featured Project: London Weather Prediction
+This repository demonstrates how to take machine learning models from experimentation to reproducible, well-tracked workflows using modern MLOps tooling.
 
-📖 Project Overview
+---
 
-As climate change impacts daily life and business operations, accurate weather forecasting is becoming increasingly critical. This project focuses on predicting the Mean Temperature (mean_temp) in London using historical weather data.
+## 🌤️ Featured Project: London Weather Prediction
 
-The objective was to build a regression model that achieves a Root Mean Squared Error (RMSE) of ≤ 3.0°C, utilizing MLflow to track experiments, tune hyperparameters, and compare model architectures systematically.
+### 📖 Project Overview
 
-📂 Dataset
+As climate change increasingly impacts daily life and business operations, accurate weather forecasting has become more important than ever.
 
-The dataset (london_weather.csv) contains historical weather records including:
+This project focuses on **predicting the daily mean temperature (`mean_temp`) in London** using historical weather data. The primary goal was to build and compare regression models while applying **MLOps best practices**, particularly experiment tracking and reproducibility with **MLflow**.
 
-Target: mean_temp (°C)
+**Objective**
+- Predict `mean_temp` (°C)
+- Achieve **RMSE ≤ 3.0°C**
+- Systematically compare models, pipelines, and hyperparameters
 
-Features: cloud_cover, sunshine, global_radiation, precipitation, pressure, snow_depth, etc.
+---
 
-Preprocessing:
+## 📂 Dataset
 
-Date Parsing: Converted dates and set as index for time-series operations.
+**File:** `london_weather.csv`
 
-Imputation: Implemented a hybrid approach using Rolling Means (window=15) for short gaps and Seasonal Averaging (day/month) for longer gaps.
+The dataset contains historical daily weather observations, including:
 
-🛠️ Tech Stack & Methodology
+- **Target**
+  - `mean_temp` (°C)
 
-Experiment Tracking: MLflow (Autologging, Nested Runs, Custom Metrics)
+- **Features**
+  - `cloud_cover`
+  - `sunshine`
+  - `global_radiation`
+  - `precipitation`
+  - `pressure`
+  - `snow_depth`
+  - `max_temp`, `min_temp`, and others
 
-Modeling: Scikit-Learn (Linear Regression, Random Forest, Decision Tree)
+### 🧹 Preprocessing
 
-Optimization: RandomizedSearchCV & GridSearchCV
+- **Date Parsing**
+  - Converted `YYYYMMDD` integers into proper `datetime` objects
+  - Set `date` as the DataFrame index for time-series operations
 
-Pipelines: Sklearn Pipelines with robust scaling (MinMaxScaler, StandardScaler, Normalizer)
+- **Missing Value Imputation**
+  - Hybrid strategy:
+    - **Rolling Mean (window = 15 days)** for short gaps
+    - **Seasonal averaging (day/month)** for longer missing periods
 
-📊 Key Results
+---
 
-I ran multiple experiments, comparing raw models against hyperparameter-tuned versions and scaled pipelines.
+## 🛠️ Tech Stack & Methodology
 
-Performance Highlight:
+- **Language:** Python  
+- **Experiment Tracking:** MLflow  
+  - Autologging  
+  - Nested runs  
+  - Custom metrics  
+- **Modeling:** Scikit-Learn  
+  - Linear Regression  
+  - Decision Tree Regressor  
+  - Random Forest Regressor  
+- **Optimization:**  
+  - `RandomizedSearchCV`  
+  - `GridSearchCV`  
+- **Pipelines:**  
+  - Sklearn Pipelines  
+  - Feature scaling using:
+    - `StandardScaler`
+    - `MinMaxScaler`
+    - `Normalizer`
 
-Target RMSE: ≤ 3.0
+---
 
-Best Model Achieved: RandomForestRegressor (Tuned/Cross-Validated)
+## 📊 Key Results
 
-Achieved RMSE: ~0.93 (Significantly outperforming the target)
+Multiple experiments were conducted comparing:
+- Raw models
+- Hyperparameter-tuned models
+- Scaled pipeline variants
 
-🔄 MLflow Experiment Workflow
+### 🏆 Performance Highlights
 
-The project implements a nested run structure to keep experiments organized:
+| Metric | Value |
+|------|------|
+| Target RMSE | ≤ 3.0 |
+| Best Model | RandomForestRegressor (Tuned + CV) |
+| Achieved RMSE | **~0.93** |
 
-Parent Run: Represents the Model Class (e.g., "RandomForest").
+The final model significantly outperformed the target threshold.
 
-Child Runs:
+![Model performance plot](LondonTemp/output.png)
 
-Raw: Baseline performance.
+---
 
-Tuned: Randomized Search CV with KFold.
+## 🔄 MLflow Experiment Workflow
 
-Pipelines: Testing different scaling strategies.
+The project uses a **nested MLflow run structure** for clarity and reproducibility:
 
-🚀 How to Run This Project
+- **Parent Run**
+  - Represents the model family (e.g., `RandomForest`)
 
-1. Structure
+- **Child Runs**
+  - **Raw:** Baseline model performance
+  - **Tuned:** Hyperparameter optimization with cross-validation
+  - **Pipelines:** Evaluation of different scaling strategies
+
+This structure enables clean comparison across modeling decisions.
+![MLflow experiment tracking](LondonTemp/output2.png)
+
+---
+
+## 🚀 How to Run This Project
+
+### 1️⃣ Repository Structure
+
+```
 
 MLOps-projects/
 ├── london_weather.csv      # Dataset
-├── london_temp.ipynb       # Main Notebook
+├── london_temp.ipynb       # Main notebook
+├── requirements.txt
 ├── .gitignore
-├── README.md
-└── requirements.txt
+└── README.md
 
+````
 
-2. Installation
+---
 
-Clone the repository and install the dependencies:
+### 2️⃣ Installation
 
-git clone [https://github.com/yourusername/MLOps-projects.git](https://github.com/yourusername/MLOps-projects.git)
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/yourusername/MLOps-projects.git
 cd MLOps-projects
 pip install -r requirements.txt
+````
 
+---
 
-3. Run Experiments
+### 3️⃣ Run Experiments
 
-Open the notebook to execute the training loop:
+Launch the notebook and execute the training workflow:
 
+```bash
 jupyter notebook london_temp.ipynb
+```
 
+---
 
-4. View Results in MLflow UI
+### 4️⃣ View Experiments in MLflow
 
-To inspect the run logs, metrics, and artifacts:
+Start the MLflow UI:
 
+```bash
 mlflow ui
+```
 
+Then open your browser at:
 
-Then open http://localhost:5000 in your browser.
+```
+http://localhost:5000
+```
 
-🔮 Future Improvements
+Use the UI to inspect:
 
-Model Registry: Promote the best model to the 'Staging' environment using MLflow Model Registry.
+* Parameters
+* Metrics
+* Artifacts
+* Model comparisons
 
-Deployment: Serve the model via a REST API (using MLflow serving or FastAPI).
+---
 
-Automation: Implement a GitHub Actions workflow for CI/CD.
+## 🔮 Future Improvements
 
+* **Model Registry**
+
+  * Promote the best model to *Staging* using the MLflow Model Registry
+
+* **Deployment**
+
+  * Serve the model via REST API using MLflow Serving or FastAPI
+
+* **Automation**
+
+  * Add CI/CD with GitHub Actions for testing and experiment validation
+
+---
+
+## 📌 Key Takeaways
+
+* Demonstrates end-to-end ML experimentation with MLOps principles
+* Emphasizes reproducibility and structured experimentation
+* Showcases practical use of MLflow in a real-world regression problem
+
+---
+
+Feel free to explore the code, experiment with models, or reach out with questions!
+
+```
+
+---
+
+If you’d like, I can:
+- Add **badges** (MLflow, Python, Scikit-Learn)
+- Rewrite this for **GitHub + LinkedIn portfolio**
+- Create a **second README** focused on recruiters/non-technical readers
+- Review `requirements.txt` for best practices
+
+Just tell me 👍
+```
