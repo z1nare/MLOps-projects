@@ -202,14 +202,3 @@ Use the UI to inspect:
 Feel free to explore the code, experiment with models, or reach out with questions!
 
 ```
-
----
-
-If you’d like, I can:
-- Add **badges** (MLflow, Python, Scikit-Learn)
-- Rewrite this for **GitHub + LinkedIn portfolio**
-- Create a **second README** focused on recruiters/non-technical readers
-- Review `requirements.txt` for best practices
-
-Just tell me 👍
-```
